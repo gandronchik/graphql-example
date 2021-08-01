@@ -1,0 +1,24 @@
+type Developer {
+    id: ID!
+    name: String!
+    apps: [App!]!
+}
+
+type Query {
+    developers: [Developer!]!
+    developer(id: ID!): Developer!
+}
+
+type Mutation {
+    createDeveloper(name: String!): Developer!
+    updateDeveloper(developerId: ID!, name: String!): Developer!
+}
+
+type Subscription {
+    developerMutated: DeveloperMutationPayload!
+}
+
+type DeveloperMutationPayload {
+    mutation: MutationType!
+    node: Developer!
+}

@@ -1,0 +1,31 @@
+type App {
+    id: ID!
+    name: String!
+    publisher: Publisher!
+    developers: [Developer!]!
+}
+
+type Query {
+    apps: [App!]!
+    app(id: ID!): App!
+}
+
+type Mutation {
+    createApp(app: AppInput!): App!
+    updateApp(appId: ID!, app: AppInput!): App!
+    setAppDevelopers(appId: ID!, developerIds: [ID!]): App!
+}
+
+input AppInput {
+    name: String!
+    publisherId: ID!
+}
+
+type Subscription {
+    appMutated: AppMutationPayload!
+}
+
+type AppMutationPayload {
+    mutation: MutationType!
+    node: App!
+}
